@@ -47,7 +47,7 @@ public class BoardController {
 	}
 	
 	// 게시 글 상세보기 요청을 처리하는 메서드
-	//@RequestMapping("/boardDetail")
+	@RequestMapping("/boardDetail")
 	public String boardDetail(Model model, int no, 
 			@RequestParam(value="pageNum", required=false, 
 					defaultValue="1") int pageNum,
@@ -79,7 +79,7 @@ public class BoardController {
 	}
 	
 	// 게시 글쓰기 폼에서 들어오는 게시 글쓰기 요청을 처리하는 메서드
-	//@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
+	@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
 	public String insertBoard(Board board) {
 		
 		/* BoardService 클래스를 이용해 
@@ -91,7 +91,7 @@ public class BoardController {
 	}
 	
 	// 게시 글 수정 폼 요청을 처리하는 메서드
-	//@RequestMapping(value="/update")
+	@RequestMapping(value="/update")
 	public String updateBoard(Model model, HttpServletResponse response, 
 			PrintWriter out, int no, String pass,
 			@RequestParam(value="pageNum", required=false, 
@@ -135,7 +135,7 @@ public class BoardController {
 	}
 	
 	// 게시 글 수정 폼에서 들어오는 게시 글 수정 요청을 처리하는 메서드
-	//@RequestMapping(value="update", method=RequestMethod.POST)
+	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String updateBoard(HttpServletResponse response, 
 			PrintWriter out, Board board,
 			RedirectAttributes reAttrs, 
@@ -182,7 +182,7 @@ public class BoardController {
 	}
 	
 	// 게시 글 상세보기에서 들어오는 게시 글 삭제 요청을 처리하는 메서드
-	//@RequestMapping({"/delete", "deleteBoard"})
+	@RequestMapping({"/delete", "deleteBoard"})
 	public String deleteBoard(HttpServletResponse response, 
 			PrintWriter out, int no, String pass,
 			RedirectAttributes reAttrs, 
