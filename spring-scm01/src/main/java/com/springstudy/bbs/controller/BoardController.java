@@ -104,7 +104,7 @@ public class BoardController {
 		// BoardService 클래스를 이용해 게시판 테이블에서 비밀번호가 맞는지 체크한다. 
 		boolean result = boardService.isPassCheck(no, pass);
 		
-		// 비밀번호가 맞지 않으면
+		// 비밀번호가 맞지 않으면 ...
 		if(! result) {
 			response.setContentType("text/html; charset=utf-8");				
 			out.println("<script>");
