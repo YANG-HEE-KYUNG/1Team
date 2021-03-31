@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springstudy.bbs.domain.Board;
 import com.springstudy.bbs.service.BoardService;
-//윤하 한번더
+//윤하 한번더11
 //안녕하세요
 @Controller
 public class BoardController {	
