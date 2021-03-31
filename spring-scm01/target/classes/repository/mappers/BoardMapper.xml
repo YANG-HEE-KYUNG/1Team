@@ -2,8 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!--	
+	http://www.mybatis.org/mybatis-3/ko/index.html 참고
+-->
 <mapper namespace="com.springstudy.bbs.mapper.BoardMapper" >
 
+	<!--
+		한 페이지에 해당하는 게시 글 리스트, 검색리스트를 가져오는 맵핑 구문
+	-->
 	<select id="boardList" resultType="Board" parameterType="hashmap">
 		SELECT 
 			no, 
@@ -30,6 +36,9 @@
 		LIMIT #{startRow}, #{num}
 	</select>
 	
+	<!--		
+		전체 게시 글 수와 검색 리스트에 대한 게시 글 수를 반환하는 맵핑 구문	
+	-->
 	<select id="getBoardCount" parameterType="hashmap" resultType="int">
 		SELECT 
 			COUNT(no) 
@@ -47,6 +56,9 @@
 		</where>	
 	</select>
 	
+	<!--
+		no에 해당하는 게시 글 하나를 가져오는 맵핑 구문
+	-->
 	<select id="getBoard" resultType="Board" resultMap="boardResultMap">
 		SELECT 
 			* 
@@ -54,6 +66,9 @@
 		WHERE no = #{no}
 	</select>
 	
+	<!-- 
+		게시 글을 테이블에 추가하는 맵핑 구문			
+	-->
 	<insert id="insertBoard" parameterType="Board"
 		useGeneratedKeys="true" keyProperty="no">
 		INSERT INTO springbbs(title, writer, content, 
@@ -63,6 +78,9 @@
 				SYSDATE(), #{readCount}, #{pass})
 	</insert>
 	
+	<!--		
+		게시판 테이블에서 no에 해당하는 게시 글의 비밀번호를 가져오는 맵핑 구문
+	-->
 	<select id="isPassCheck" resultType="String">
 		SELECT 
 			pass
@@ -70,6 +88,9 @@
 		WHERE no = #{no}
 	</select>
 	
+	<!--		
+		게시판 테이블에서 no에 해당하는 게시 글을 수정하는 맵핑 구문
+	-->
 	<update id="updateBoard" parameterType="Board">
 		UPDATE springbbs 
 			SET title = #{title}, content = #{content},
@@ -77,17 +98,26 @@
 		WHERE no = #{no}
 	</update>
 
+	<!--
+		게시판 테이블에서 no에 해당하는 게시 글을 삭제하는 맵핑 구문
+	-->
 	<delete id="deleteBoard">
 		DELETE FROM springbbs
 		WHERE no = #{no}
 	</delete>
 
+	<!--
+		게시판 테이블에서 no에 해당하는 게시 글의 읽은 횟수를 증가시키는 맵핑 구문
+	-->
 	<update id="incrementReadCount">
 		UPDATE springbbs
 			SET read_count = read_count + 1
 		WHERE no = #{no}
 	</update>
 	
+	<!--
+		Board 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap
+	-->
 	<resultMap id="boardResultMap" type="Board">
 		<id property="no" column="no" />
 		<result property="title" column="title" />
