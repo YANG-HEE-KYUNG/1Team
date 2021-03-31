@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	합치지
+	합치기두번째
 </body>
 </html>
